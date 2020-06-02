@@ -10,6 +10,7 @@ from firebase_admin import credentials
 
 async def call_alice(request):
 	#request_id	= request.rel_url.query['request_id']
+	print(request.rel_url.query)
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 	
