@@ -67,7 +67,7 @@ async def call_alice(request):
 ### http handle
 app = web.Application()
 #app.router.add_route('POST', '/alice', call_alice)
-app.router.add_route('POST', '/alice', expect_handler = web.Request.json)
+app.router.add_route('POST', '/alice', call_alice, expect_handler = web.Request.json)
 
 ### json handle
 #app = web.Application()
