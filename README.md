@@ -4,7 +4,8 @@
 ```cert/privkey.pem```   
 ```cert/cert.json```
 #### Check, does your server accepting https requests
-https://yoursite.net:8081/check
+https://yoursite.net:8081/check   
+Should return: ok
 #### Run the server
 ```python3 server.py```   
 to run server forever:   
