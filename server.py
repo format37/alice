@@ -18,9 +18,9 @@ app = web.Application()
 app.router.add_route('POST', '/alice', call_alice)
 
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-ssl_context.load_cert_chain('fullchain.pem', 'privkey.pem')
+ssl_context.load_cert_chain('cert/fullchain.pem', 'cert/privkey.pem')
 
-cred = credentials.Certificate("/home/format37_gmail_com/projects/langtea/backend/json/langtea-firebase-adminsdk-q4d01-b85fc8ed07.json")
+cred = credentials.Certificate("cert/cert.json")
 firebase_admin.initialize_app(cred)
 
 loop = asyncio.get_event_loop()
