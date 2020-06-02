@@ -33,7 +33,7 @@ async def call_alice(request):
 	
 	#print('in',vars(request))
 	#print('in',dir(request.rel_url.query))
-	print('in',request.rel_url.query.getall())
+	print('in',request.rel_url.query.keys())
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 	
