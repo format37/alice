@@ -40,13 +40,13 @@ async def call_alice(request):
 		logdata=''
 		for v in vars(request):
 			#print('---v',v)
-			logdata+='---v '+str(v)
+			logdata+='\n---v '+str(v)
 			for d in dir(v):
 				#print('--- ---d',d)
-				logdata+='--- ---d '+str(d)
+				logdata+='\n--- ---d '+str(d)
 				for c in dir(d):
 					#print('--- --- ---c',c)
-					logdata+='--- --- ---c '+str(c)
+					logdata+='\n--- --- ---c '+str(c)
 		logfile.write(logdata)
 	
 	content = "alice ok"	
