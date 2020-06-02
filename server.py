@@ -24,8 +24,8 @@ async def call_alice(request):
 	#return web.Response(text=response,content_type="text/html")
 	#return web.Response(text=response,content_type="application/json")
 	#responce = {"q": "qqq", "a": "aaa"}
-	print(responce)
-	return web.json_response(responce)
+	print(response)
+	return web.json_response(response)
 	#web.json_response(response)
 	#web.json_response({'error': message})
 
