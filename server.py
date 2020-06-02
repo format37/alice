@@ -37,9 +37,9 @@ async def call_alice(request):
 	#print('in',request.message)
 	#print('in',dir(request.rel_url))
 	
-	print('-i',len(request.rel_url.query.items))
-	print('-k',len(request.rel_url.query.keys))
-	print('-v',len(request.rel_url.query.values))
+	#print('-i',len(request.rel_url.query.items))
+	#print('-k',len(request.rel_url.query.keys))
+	#print('-v',len(request.rel_url.query.values))
 	
 	print('i',request.rel_url.query.items)
 	print('k',request.rel_url.query.keys)
