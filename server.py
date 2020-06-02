@@ -36,6 +36,10 @@ async def call_alice(request):
 	#print('in',request.rel_url.query_string)
 	#print('in',request.message)
 	#print('in',dir(request.rel_url))
+	
+	print('r',request.json['version'])
+	
+	'''
 	with open('log.txt','w') as logfile:
 		logdata=''
 		for v in vars(request):
@@ -48,6 +52,7 @@ async def call_alice(request):
 					#print('--- --- ---c',c)
 					logdata+='\n--- --- ---c '+str(c)
 		logfile.write(logdata)
+	'''
 	
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
