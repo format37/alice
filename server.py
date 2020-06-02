@@ -88,7 +88,7 @@ async def call_alice(request):
 app = web.Application()
 chooser = AcceptChooser()
 app.add_routes([web.get('/', chooser.do_route)])
-chooser.reg_acceptor('application/json', '/alice', handle_json)
+chooser.reg_acceptor('application/json', handle_json)
 
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain('cert/fullchain.pem', 'cert/privkey.pem')
