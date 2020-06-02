@@ -7,25 +7,6 @@ from aiohttp import web
 import ssl
 import firebase_admin
 from firebase_admin import credentials
-
-class AcceptChooser:
-
-    def __init__(self):
-        self._accepts = {}
-
-    async def do_route(self, request):
-        for accept in request.headers.getall('ACCEPT', []):
-            acceptor = self._accepts.get(accept)
-            if acceptor is not None:
-                return (await acceptor(request))
-        raise HTTPNotAcceptable()
-
-    def reg_acceptor(self, accept, handler):
-        self._accepts[accept] = handler
-
-async def handle_json(request):
-	print(request)
-	return web.Response(text="content",content_type="text/html")
 	
 async def call_alice(request):
 	
@@ -53,7 +34,7 @@ async def call_alice(request):
 	#print('in',request.rel_url.query_string)
 	#print('in',request.message)
 	#print('in',dir(request.rel_url))
-	
+	'''
 	print('-i',len(request.rel_url.query.items()))
 	print('-k',len(request.rel_url.query.keys()))
 	print('-v',len(request.rel_url.query.values()))
@@ -61,6 +42,7 @@ async def call_alice(request):
 	print('i',request.rel_url.query.items())
 	print('k',request.rel_url.query.keys())
 	print('v',request.rel_url.query.values())
+	'''
 	
 	'''
 	with open('log.txt','w') as logfile:
@@ -77,18 +59,21 @@ async def call_alice(request):
 		logfile.write(logdata)
 	'''
 	
+	data = await request.json()
+	
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 
 ### http handle
-#app = web.Application()
+app = web.Application()
 #app.router.add_route('POST', '/alice', call_alice)
+app.router.add_route('POST', '/alice', expect_handler = aiohttp.web.Request.json)
 
 ### json handle
-app = web.Application()
-chooser = AcceptChooser()
-app.add_routes([web.get('/', chooser.do_route)])
-chooser.reg_acceptor('application/json', handle_json)
+#app = web.Application()
+#chooser = AcceptChooser()
+#app.add_routes([web.get('/', chooser.do_route)])
+#chooser.reg_acceptor('application/json', handle_json)
 
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain('cert/fullchain.pem', 'cert/privkey.pem')
