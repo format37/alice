@@ -5,6 +5,7 @@ PORT = '8443' #prod
 import asyncio
 from aiohttp import web
 import ssl
+import firebase_admin
 from firebase_admin import credentials
 
 async def call_alice(request):
