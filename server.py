@@ -7,13 +7,13 @@ from urllib.parse import urlparse, parse_qsl
 import multidict as MultiDict
 import requests
 
-async def load_map(request):
+async def call_alice(request):
 	#request_id	= request.rel_url.query['request_id']
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 	
 app = web.Application()
-app.router.add_route('GET', '/alice', alice)
+app.router.add_route('GET', '/alice', call_alice)
 
 loop = asyncio.get_event_loop()
 handler = app.make_handler()
