@@ -61,6 +61,8 @@ async def call_alice(request):
 	
 	data = await request.json()
 	
+	print(data)
+	
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 
