@@ -21,8 +21,8 @@ async def call_alice(request):
     }		
 	response['response']['text']='command'
 	#content = "alice ok"
-	#return web.Response(text=response,content_type="text/html")
-	web.json_response(response)
+	return web.Response(text=response,content_type="text/html")
+	#web.json_response(response)
 	#web.json_response({'error': message})
 
 app = web.Application()
