@@ -8,6 +8,8 @@ import ssl
 import firebase_admin
 from firebase_admin import credentials
 
+import pprint
+
 async def call_alice(request):
 	
 	#event = request.rel_url.query
@@ -26,7 +28,8 @@ async def call_alice(request):
 	#request 			= event.get('request', {})
 	#original_utterance	= request.get('original_utterance', {})
 	#for item in event:
-	print( "item", request.body)
+	#print( "item", request.body)
+	pprint(request)
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 	
