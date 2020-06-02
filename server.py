@@ -9,6 +9,9 @@ import firebase_admin
 from firebase_admin import credentials
 
 async def call_alice(request):
+	
+	event = request.rel_url.query
+	
 	'''content = {
         'version': event['version'],
         'session': event['session'],
@@ -20,7 +23,7 @@ async def call_alice(request):
     }'''
 	
 	#request_id	= request.rel_url.query['request_id']
-	print("query",request.rel_url.query['version'])
+	print( "query",event.get('request', {}) )
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 	
