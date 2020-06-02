@@ -21,7 +21,10 @@ async def call_alice(request):
     }		
 	response['response']['text']='command'
 	#content = "alice ok"
-	return web.Response(text=response,content_type="text/html")
+	#return web.Response(text=response,content_type="text/html")
+	#return web.Response(text=response,content_type="application/json")
+	responce = {"q": "qqq", "a": "aaa"}
+	return web.json_response(responce)
 	#web.json_response(response)
 	#web.json_response({'error': message})
 
