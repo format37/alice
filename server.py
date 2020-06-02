@@ -10,6 +10,10 @@ from firebase_admin import credentials
 
 #import pprint
 
+async def handle_json(request):
+	print(request)
+	return web.Response(text="content",content_type="text/html")
+	
 async def call_alice(request):
 	
 	#event = request.rel_url.query
@@ -64,7 +68,8 @@ async def call_alice(request):
 	return web.Response(text=content,content_type="text/html")
 	
 app = web.Application()
-app.router.add_route('POST', '/alice', call_alice)
+#app.router.add_route('POST', '/alice', call_alice)
+app.router.add_route('application/json', '/alice', handle_json)
 
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain('cert/fullchain.pem', 'cert/privkey.pem')
