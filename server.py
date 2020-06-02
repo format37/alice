@@ -38,6 +38,8 @@ async def call_alice(request):
 	#print('in',dir(request.rel_url))
 	for v in vars(request):
 		print('v',v)
+		for d in dir(v):
+			print('  d',d)
 	
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
