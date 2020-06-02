@@ -8,7 +8,20 @@ import ssl
 import firebase_admin
 from firebase_admin import credentials
 
-#import pprint
+class AcceptChooser:
+
+    def __init__(self):
+        self._accepts = {}
+
+    async def do_route(self, request):
+        for accept in request.headers.getall('ACCEPT', []):
+            acceptor = self._accepts.get(accept)
+            if acceptor is not None:
+                return (await acceptor(request))
+        raise HTTPNotAcceptable()
+
+    def reg_acceptor(self, accept, handler):
+        self._accepts[accept] = handler
 
 async def handle_json(request):
 	print(request)
@@ -66,10 +79,15 @@ async def call_alice(request):
 	
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
-	
-app = web.Application()
+
+### http handle
+#app = web.Application()
 #app.router.add_route('POST', '/alice', call_alice)
-app.router.add_route('application/json', '/alice', handle_json)
+
+### json handle
+chooser = AcceptChooser()
+app.add_routes([web.get('/', chooser.do_route)])
+chooser.reg_acceptor('application/json', '/alice', handle_json)
 
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain('cert/fullchain.pem', 'cert/privkey.pem')
