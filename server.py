@@ -29,7 +29,7 @@ async def call_alice(request):
 	#original_utterance	= request.get('original_utterance', {})
 	#for item in event:
 	#print( "item", request.body)
-	pprint("re",request.rel_url)
+	pprint("re",request.rel_url.query)
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 	
