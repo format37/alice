@@ -23,9 +23,9 @@ async def call_alice(request):
     }'''
 	
 	#request_id	= request.rel_url.query['request_id']
-	request 			= event.get('request', {})
-	original_utterance	= request.get('original_utterance', {})
-	print( "original_utterance", original_utterance)
+	#request 			= event.get('request', {})
+	#original_utterance	= request.get('original_utterance', {})
+	print( "items", event.items())
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 	
