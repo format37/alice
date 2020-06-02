@@ -85,6 +85,7 @@ async def call_alice(request):
 #app.router.add_route('POST', '/alice', call_alice)
 
 ### json handle
+app = web.Application()
 chooser = AcceptChooser()
 app.add_routes([web.get('/', chooser.do_route)])
 chooser.reg_acceptor('application/json', '/alice', handle_json)
