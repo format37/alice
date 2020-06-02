@@ -19,15 +19,8 @@ async def call_alice(request):
             "end_session": False
         }
     }		
-	response['response']['text']='command'
-	#content = "alice ok"
-	#return web.Response(text=response,content_type="text/html")
-	#return web.Response(text=response,content_type="application/json")
-	#responce = {"q": "qqq", "a": "aaa"}
-	print(response)
+	response['response']['text']=command
 	return web.json_response(response)
-	#web.json_response(response)
-	#web.json_response({'error': message})
 
 app = web.Application()
 app.router.add_route('POST', '/alice', call_alice, expect_handler = web.Request.json)
