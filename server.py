@@ -10,12 +10,12 @@ from firebase_admin import credentials
 
 async def call_alice(request):
 	#request_id	= request.rel_url.query['request_id']
-	print(request.rel_url.query)
+	print("query",request.rel_url.query)
 	content = "alice ok"	
 	return web.Response(text=content,content_type="text/html")
 	
 app = web.Application()
-app.router.add_route('GET', '/alice', call_alice)
+app.router.add_route('POST', '/alice', call_alice)
 
 ssl_context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 ssl_context.load_cert_chain('fullchain.pem', 'privkey.pem')
